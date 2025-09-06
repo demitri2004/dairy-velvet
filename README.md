@@ -1,3 +1,14 @@
+# npm
+
+npm run dev
+npm run build
+
+# git
+
+git add .
+git commit -m "Initial Dairy Velvet site with Astro + Tailwind"
+git push -u origin main
+
 # Astro Starter Kit: Minimal
 
 ```sh
