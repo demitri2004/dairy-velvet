@@ -1,0 +1,8 @@
+[build]
+    command = "npm run build"
+    publish = "dist"
+     
+[[redirects]]
+  from = "/survey"
+  to = "https://dairy-velvet-survey.netlify.app/"
+  status = 302
