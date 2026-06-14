@@ -1,0 +1,104 @@
+---
+import LayoutNew from '../layouts/LayoutNew.astro';
+
+const markets = [
+  {
+    name: 'Lansdale Farmers Market',
+    day: 'Every Saturday',
+    schedule: [
+      { month: 'June', dates: [6, 13, 20, 27] },
+      { month: 'July', dates: [4, 11, 18, 25] },
+      { month: 'August', dates: [1, 8, 15, 22, 29] },
+      { month: 'September', dates: [5, 12, 19, 26] },
+      { month: 'October', dates: [3, 10, 17, 24, 31] },
+      { month: 'November', dates: [7, 14, 21] },
+      { month: 'December', dates: [19] },
+    ],
+  },
+  {
+    name: 'North Wales Farmers Market',
+    day: 'Select Sundays',
+    schedule: [
+      { month: 'June', dates: [7, 21] },
+      { month: 'July', dates: [5] },
+      { month: 'September', dates: [6, 20] },
+      { month: 'October', dates: [4, 18] },
+    ],
+  },
+  {
+    name: 'Horsham Farmers Market',
+    day: 'Select Sundays',
+    schedule: [
+      { month: 'June', dates: [14, 28] },
+      { month: 'July', dates: [12, 19] },
+      { month: 'August', dates: [30] },
+      { month: 'September', dates: [13, 27] },
+      { month: 'October', dates: [11, 25] },
+    ],
+  },
+];
+---
+
+<LayoutNew title="Where to Buy - Dairy Velvet">
+  <!-- Page header -->
+  <section class="py-16 px-4 text-center" style="background-color: #EAD7BF;">
+    <p class="text-xs font-semibold uppercase tracking-widest mb-3" style="color: #BE8D5A;">Find Us Near You</p>
+    <h1 class="dv-serif font-bold text-5xl" style="color: #1A0E07;">Where to Buy</h1>
+  </section>
+
+  <!-- Intro -->
+  <section class="py-16 px-4" style="background-color: #F8F3EC;">
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="text-base leading-relaxed" style="color: #5C3A20;">
+        You can find Dairy Velvet at three local farmers markets across Montgomery County and
+        year-round at Organnons Natural Market in Newtown. We'd love to see you — come say hello!
+      </p>
+    </div>
+  </section>
+
+  <!-- In-store -->
+  <section class="py-16 px-4" style="background-color: #EAD7BF;">
+    <div class="max-w-5xl mx-auto flex flex-col lg:flex-row items-center gap-12">
+      <div class="lg:w-1/2 rounded-2xl overflow-hidden shadow-md">
+        <img src="/images/organonns.jpg" alt="Dairy Velvet on the shelf at Organnons Natural Market" class="w-full h-80 object-cover" />
+      </div>
+      <div class="lg:w-1/2">
+        <p class="text-xs font-semibold uppercase tracking-widest mb-3" style="color: #BE8D5A;">In Store · Year-Round</p>
+        <h2 class="dv-serif font-bold text-4xl leading-tight mb-6" style="color: #1A0E07;">Organnons Natural Market</h2>
+        <p class="text-base leading-relaxed mb-4" style="color: #5C3A20;">Find us in the dairy section, available year-round.</p>
+        <a href="https://maps.app.goo.gl/59mewJAKieUNnmc18" target="_blank" class="text-sm font-medium hover:underline" style="color: #BE8D5A;">Newtown, PA ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Farmers Markets -->
+  <section class="py-16 px-4" style="background-color: #F8F3EC;">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-10">
+        <p class="text-xs font-semibold uppercase tracking-widest mb-2" style="color: #BE8D5A;">Seasonal · 2026</p>
+        <h2 class="dv-serif font-bold text-3xl" style="color: #1A0E07;">Farmers Markets</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {markets.map((market) => (
+          <div class="bg-white rounded-2xl p-6 shadow-sm" style="border: 1px solid #D4BFA0;">
+            <p class="text-xs font-semibold uppercase tracking-widest mb-2" style="color: #BE8D5A;">{market.day}</p>
+            <h3 class="dv-serif font-semibold text-xl mb-5" style="color: #1A0E07;">{market.name}</h3>
+
+            <div class="space-y-3">
+                {market.schedule.map((entry) => (
+                  <div>
+                    <p class="text-xs font-semibold uppercase tracking-wide mb-0.5" style="color: #1A0E07;">{entry.month}</p>
+                    <p class="text-sm" style="color: #5C3A20;">{entry.dates.join(', ')}</p>
+                  </div>
+                ))}
+              </div>
+          </div>
+        ))}
+      </div>
+      <div class="mt-10 rounded-2xl overflow-hidden shadow-md">
+        <img src="/images/market-booth.jpg" alt="Dairy Velvet at the farmers market" class="w-full" />
+      </div>
+    </div>
+  </section>
+</LayoutNew>

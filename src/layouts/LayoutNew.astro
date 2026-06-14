@@ -15,6 +15,17 @@ const { title = 'Dairy Velvet' } = Astro.props;
       rel="stylesheet"
     />
     <title>{title}</title>
+    {import.meta.env.PROD && (
+      <>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-QEHVXBTJNK"></script>
+        <script is:inline>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){ window.dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', 'G-QEHVXBTJNK');
+        </script>
+      </>
+    )}
     <style is:global>
       body {
         font-family: 'Inter', sans-serif;
