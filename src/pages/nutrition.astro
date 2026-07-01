@@ -1,0 +1,50 @@
+---
+import LayoutNew from '../layouts/LayoutNew.astro';
+---
+
+<LayoutNew title="Nutrition Facts - Dairy Velvet">
+  <!-- Page header -->
+  <section class="py-16 px-4 text-center" style="background-color: #EAD7BF;">
+    <p class="text-xs font-semibold uppercase tracking-widest mb-3" style="color: #BE8D5A;">What's Inside</p>
+    <h1 class="dv-serif font-bold text-5xl" style="color: #1A0E07;">Nutrition Facts</h1>
+  </section>
+
+  <!-- Labels -->
+  <section class="py-16 px-4" style="background-color: #F8F3EC;">
+    <div class="max-w-3xl mx-auto">
+      <p class="text-base leading-relaxed text-center mb-4" style="color: #5C3A20;">
+        We're currently working on adding nutrition labels to our packaging. In the meantime, you can view them here.
+      </p>
+      <p class="text-base leading-relaxed text-center mb-12" style="color: #5C3A20;">
+        Each Dairy Velvet bar is 1 serving (50g). High in protein, low in sugar, made with simple wholesome ingredients.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <!-- Vanilla -->
+        <div id="vanilla" class="flex flex-col items-center">
+          <h2 class="dv-serif font-semibold text-2xl mb-6" style="color: #1A0E07;">Vanilla</h2>
+          <div class="w-full max-w-xs shadow-md rounded-xl border overflow-hidden flex items-start justify-center" style="border-color: #D4BFA0; height: 640px;">
+            <img
+              src="/images/nutrition-vanilla.png"
+              alt="Dairy Velvet Vanilla Nutrition Facts"
+              class="w-full object-contain object-top"
+            />
+          </div>
+        </div>
+
+        <!-- Chocolate -->
+        <div id="chocolate" class="flex flex-col items-center">
+          <h2 class="dv-serif font-semibold text-2xl mb-6" style="color: #1A0E07;">Chocolate</h2>
+          <div class="w-full max-w-xs shadow-md rounded-xl border overflow-hidden flex items-start justify-center" style="border-color: #D4BFA0; height: 640px;">
+            <img
+              src="/images/nutrition-chocolate.png"
+              alt="Dairy Velvet Chocolate Nutrition Facts"
+              class="w-full object-contain object-top"
+            />
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</LayoutNew>
