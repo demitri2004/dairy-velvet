@@ -7,7 +7,7 @@ const { title = 'Dairy Velvet' } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -52,10 +52,12 @@ const { title = 'Dairy Velvet' } = Astro.props;
           <a href="/where-to-buy" class="text-sm font-medium hover:opacity-60 transition-opacity" style="color: #1c1008;">Where to Buy</a>
           <a href="/nutrition" class="text-sm font-medium hover:opacity-60 transition-opacity" style="color: #1c1008;">Nutrition</a>
           <a href="/contact" class="text-sm font-medium hover:opacity-60 transition-opacity" style="color: #1c1008;">Contact</a>
+          <a href="https://dairyvelvet.square.site" target="_blank" class="text-sm font-semibold px-4 py-2 rounded-full transition-opacity hover:opacity-80" style="background-color: #3d2314; color: #fdfaf6;">Order Now</a>
         </nav>
 
-        <!-- Right side: social icons (always visible) + hamburger (mobile only) -->
+        <!-- Right side: Order Now (mobile) + social icons (always visible) + hamburger (mobile only) -->
         <div class="flex items-center gap-3">
+          <a href="https://dairyvelvet.square.site" target="_blank" class="md:hidden text-sm font-semibold px-4 py-2 rounded-full transition-opacity hover:opacity-80" style="background-color: #3d2314; color: #fdfaf6;">Order Now</a>
           <div class="flex items-center gap-1">
             <a target="_blank" href="https://www.facebook.com/profile.php?id=61580376261342" aria-label="Facebook" class="opacity-60 hover:opacity-100 transition-opacity p-2">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 md:h-5 md:w-5" viewBox="0 0 24 24" fill="#3d2314">
@@ -90,6 +92,7 @@ const { title = 'Dairy Velvet' } = Astro.props;
         <a href="/where-to-buy" class="text-sm font-medium py-1" style="color: #1c1008;">Where to Buy</a>
         <a href="/nutrition" class="text-sm font-medium py-1" style="color: #1c1008;">Nutrition</a>
         <a href="/contact" class="text-sm font-medium py-1" style="color: #1c1008;">Contact</a>
+        <a href="https://dairyvelvet.square.site" target="_blank" class="text-sm font-semibold px-4 py-2 rounded-full text-center transition-opacity hover:opacity-80" style="background-color: #3d2314; color: #fdfaf6;">Order Now</a>
       </nav>
     </header>
 
