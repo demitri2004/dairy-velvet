@@ -1,8 +1,16 @@
 [build]
     command = "npm run build"
     publish = "dist"
-     
+
+# Existing Survey Redirect     
 [[redirects]]
   from = "/survey"
   to = "https://dairy-velvet-survey.netlify.app/"
   status = 302
+
+# New Forced Domain Redirect to primary domain
+[[redirects]]
+  from = "https://dairyvelvet.netlify.app/*"
+  to = "https://dairyvelvet.com/:splat"
+  status = 301
+  force = true
