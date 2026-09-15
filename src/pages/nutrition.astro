@@ -19,15 +19,15 @@ import LayoutNew from '../layouts/LayoutNew.astro';
         Each Dairy Velvet bar is 1 serving (50g). High in protein, low in sugar, made with simple wholesome ingredients.
       </p>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
         <!-- Vanilla -->
         <div id="vanilla" class="flex flex-col items-center">
           <h2 class="dv-serif font-semibold text-2xl mb-6" style="color: #1A0E07;">Vanilla</h2>
-          <div class="w-full max-w-xs shadow-md rounded-xl border overflow-hidden flex items-start justify-center" style="border-color: #D4BFA0; height: 640px;">
+          <div class="w-full max-w-xs shadow-md rounded-xl border overflow-hidden" style="border-color: #D4BFA0;">
             <img
               src="/images/nutrition-vanilla.png"
               alt="Dairy Velvet Vanilla Nutrition Facts"
-              class="w-full object-contain object-top"
+              class="w-full block"
             />
           </div>
         </div>
@@ -35,11 +35,23 @@ import LayoutNew from '../layouts/LayoutNew.astro';
         <!-- Chocolate -->
         <div id="chocolate" class="flex flex-col items-center">
           <h2 class="dv-serif font-semibold text-2xl mb-6" style="color: #1A0E07;">Chocolate</h2>
-          <div class="w-full max-w-xs shadow-md rounded-xl border overflow-hidden flex items-start justify-center" style="border-color: #D4BFA0; height: 640px;">
+          <div class="w-full max-w-xs shadow-md rounded-xl border overflow-hidden" style="border-color: #D4BFA0;">
             <img
               src="/images/nutrition-chocolate.png"
               alt="Dairy Velvet Chocolate Nutrition Facts"
-              class="w-full object-contain object-top"
+              class="w-full block"
+            />
+          </div>
+        </div>
+
+        <!-- Dulce de Leche -->
+        <div id="dulce-de-leche" class="flex flex-col items-center">
+          <h2 class="dv-serif font-semibold text-2xl mb-6" style="color: #1A0E07;">Dulce de Leche</h2>
+          <div class="w-full max-w-xs shadow-md rounded-xl border overflow-hidden" style="border-color: #D4BFA0;">
+            <img
+              src="/images/nutrition-dulce-de-leche.png"
+              alt="Dairy Velvet Dulce de Leche Nutrition Facts"
+              class="w-full block"
             />
           </div>
         </div>
