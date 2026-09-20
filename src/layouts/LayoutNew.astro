@@ -38,9 +38,10 @@ const { title = 'Dairy Velvet' } = Astro.props;
     </style>
   </head>
   <body>
-    <!-- Header -->
-    <header class="bg-white sticky top-0 z-50" style="border-bottom: 1px solid #e8d5b7;">
-      <div class="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-4">
+    <div class="sticky top-0 z-50">
+      <!-- Header -->
+      <header class="bg-white" style="border-bottom: 1px solid #e8d5b7;">
+        <div class="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-4">
         <!-- Logo -->
         <a href="/" class="flex items-center gap-3">
           <img src="/images/logo.png" alt="Dairy Velvet" class="h-10 w-10 rounded-full object-cover" />
@@ -94,7 +95,46 @@ const { title = 'Dairy Velvet' } = Astro.props;
         <a href="/contact" class="text-sm font-medium py-1" style="color: #1c1008;">Contact</a>
         <a href="https://dairyvelvet.square.site" target="_blank" class="text-sm font-semibold px-4 py-2 rounded-full text-center transition-opacity hover:opacity-80" style="background-color: #3d2314; color: #fdfaf6;">Order Now</a>
       </nav>
-    </header>
+      </header>
+
+      <!-- Promo Banner -->
+      <div id="promo-banner" class="relative" style="background-color: #3d2314;">
+        <a
+          href="https://dairy-velvet-survey.netlify.app/join"
+          target="_blank"
+          rel="noopener"
+          class="flex items-center justify-center gap-2 px-10 py-2.5 text-center text-xs sm:text-sm font-medium hover:opacity-90 transition-opacity"
+          style="color: #fdfaf6;">
+          <span>Join our email list for 10% off at the farmers market</span>
+          <span class="font-semibold underline underline-offset-2 whitespace-nowrap">Join Now →</span>
+        </a>
+        <button
+          id="promo-banner-close"
+          aria-label="Dismiss banner"
+          class="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 opacity-70 hover:opacity-100 transition-opacity"
+          style="color: #fdfaf6;">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <script is:inline>
+        (function () {
+          var KEY = 'dv-promo-banner-dismissed';
+          var banner = document.getElementById('promo-banner');
+          if (!banner) return;
+          if (localStorage.getItem(KEY)) {
+            banner.style.display = 'none';
+            return;
+          }
+          var closeBtn = document.getElementById('promo-banner-close');
+          closeBtn && closeBtn.addEventListener('click', function () {
+            localStorage.setItem(KEY, '1');
+            banner.style.display = 'none';
+          });
+        })();
+      </script>
+    </div>
 
     <script>
       const btn = document.getElementById('menu-btn');
