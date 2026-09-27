@@ -76,7 +76,7 @@ const ogImage = new URL('/images/og-image.jpg', Astro.site);
 
         <!-- Right side: Order Now (mobile) + social icons (always visible) + hamburger (mobile only) -->
         <div class="flex items-center gap-3">
-          <a href="https://dairyvelvet.square.site" target="_blank" class="md:hidden text-sm font-semibold px-4 py-2 rounded-full transition-opacity hover:opacity-80" style="background-color: #3d2314; color: #fdfaf6;">Order Now</a>
+          <a href="https://dairyvelvet.square.site" target="_blank" class="md:hidden whitespace-nowrap text-sm font-semibold px-4 py-2 rounded-full transition-opacity hover:opacity-80" style="background-color: #3d2314; color: #fdfaf6;">Order Now</a>
           <div class="flex items-center gap-1">
             <a target="_blank" href="https://www.facebook.com/profile.php?id=61580376261342" aria-label="Facebook" class="opacity-60 hover:opacity-100 transition-opacity p-2">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 md:h-5 md:w-5" viewBox="0 0 24 24" fill="#3d2314">
@@ -93,6 +93,7 @@ const ogImage = new URL('/images/og-image.jpg', Astro.site);
           <!-- Hamburger button (mobile only) -->
           <button
             id="menu-btn"
+            aria-controls="mobile-menu"
             class="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1.5"
             aria-label="Toggle menu"
             aria-expanded="false">
@@ -157,10 +158,11 @@ const ogImage = new URL('/images/og-image.jpg', Astro.site);
     <script>
       const btn = document.getElementById('menu-btn');
       const menu = document.getElementById('mobile-menu');
-      btn?.addEventListener('click', () => {
-        const open = menu?.classList.toggle('hidden') === false;
+      const setOpen = (open: boolean) => {
+        if (!btn || !menu) return;
+        menu.classList.toggle('hidden', !open);
         btn.setAttribute('aria-expanded', String(open));
-        const bars = btn.querySelectorAll('.menu-bar');
+        const bars = btn.querySelectorAll<HTMLElement>('.menu-bar');
         if (open) {
           bars[0].style.transform = 'translateY(8px) rotate(45deg)';
           bars[1].style.opacity = '0';
@@ -169,6 +171,17 @@ const ogImage = new URL('/images/og-image.jpg', Astro.site);
           bars[0].style.transform = '';
           bars[1].style.opacity = '';
           bars[2].style.transform = '';
+        }
+      };
+      const isOpen = () => btn?.getAttribute('aria-expanded') === 'true';
+
+      btn?.addEventListener('click', () => setOpen(!isOpen()));
+      // Close after a link is chosen (Order Now opens a new tab, so the page stays behind it)
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setOpen(false)));
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isOpen()) {
+          setOpen(false);
+          btn?.focus();
         }
       });
     </script>
