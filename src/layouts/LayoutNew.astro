@@ -1,6 +1,9 @@
 ---
 import '../styles/global.css';
-const { title = 'Dairy Velvet' } = Astro.props;
+const { title = 'Dairy Velvet', description, noindex = false } = Astro.props;
+const canonicalPath = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const canonicalURL = new URL(canonicalPath, Astro.site);
+const ogImage = new URL('/images/og-image.jpg', Astro.site);
 ---
 
 <html lang="en">
@@ -15,6 +18,21 @@ const { title = 'Dairy Velvet' } = Astro.props;
       rel="stylesheet"
     />
     <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonicalURL} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Dairy Velvet" />
+    <meta property="og:title" content={title} />
+    {description && <meta property="og:description" content={description} />}
+    {!noindex && <meta property="og:url" content={canonicalURL} />}
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Dairy Velvet Vanilla, Chocolate, and Dulce de Leche farmer's cheese snacks" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    {description && <meta name="twitter:description" content={description} />}
+    <meta name="twitter:image" content={ogImage} />
     {import.meta.env.PROD && (
       <>
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-QEHVXBTJNK"></script>
@@ -157,8 +175,17 @@ const { title = 'Dairy Velvet' } = Astro.props;
 
     <main><slot /></main>
 
-    <footer class="py-6 text-sm text-center" style="border-top: 1px solid #e8d5b7; color: #7a5c3e;">
-      © {new Date().getFullYear()} Dairy Velvet · Lansdale, PA
+    <footer class="py-8 px-4 text-sm text-center" style="border-top: 1px solid #e8d5b7; color: #7a5c3e;">
+      <nav aria-label="Footer" class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-4">
+        <a href="/" class="hover:underline">Home</a>
+        <a href="/where-to-buy/" class="hover:underline">Where to Buy</a>
+        <a href="/nutrition/" class="hover:underline">Nutrition</a>
+        <a href="/contact/" class="hover:underline">Contact</a>
+        <a href="https://dairyvelvet.square.site" target="_blank" class="hover:underline">Order Now</a>
+        <a href="https://www.instagram.com/dairy_velvet/" target="_blank" class="hover:underline">Instagram</a>
+        <a href="https://www.facebook.com/profile.php?id=61580376261342" target="_blank" class="hover:underline">Facebook</a>
+      </nav>
+      <p>© {new Date().getFullYear()} Dairy Velvet · Lansdale, PA</p>
     </footer>
   </body>
 </html>

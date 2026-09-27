@@ -2,7 +2,10 @@
 import LayoutNew from '../layouts/LayoutNew.astro';
 ---
 
-<LayoutNew title="Dairy Velvet">
+<LayoutNew
+  title="Chocolate-Covered Farmer's Cheese Snacks | Dairy Velvet"
+  description="Small-batch chocolate-coated farmer's cheese snacks made with Pennsylvania dairy. Find Dairy Velvet at local farmers markets or order for pickup and delivery."
+>
   <!-- Hero -->
   <section class="flex flex-col lg:flex-row" style="min-height: 520px;">
     <div class="lg:w-3/5 h-72 lg:h-auto overflow-hidden">
@@ -78,7 +81,7 @@ import LayoutNew from '../layouts/LayoutNew.astro';
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="bg-white rounded-2xl overflow-hidden shadow-sm" style="border: 1px solid #D4BFA0;">
-          <img src="/images/product_vanilla.png" alt="Vanilla" class="w-full h-56 object-cover" />
+          <img src="/images/product_vanilla.jpg" alt="Vanilla" loading="lazy" class="w-full h-56 object-cover" />
           <div class="p-6">
             <h3 class="dv-serif font-semibold text-xl mb-2" style="color: #1A0E07;">Vanilla</h3>
             <p class="text-sm leading-relaxed mb-3" style="color: #5C3A20;">Classic creamy vanilla farmer's cheese wrapped in a delicate layer of silky chocolate. Light, satisfying, and made with honest ingredients.</p>
@@ -86,7 +89,7 @@ import LayoutNew from '../layouts/LayoutNew.astro';
           </div>
         </div>
         <div class="bg-white rounded-2xl overflow-hidden shadow-sm" style="border: 1px solid #D4BFA0;">
-          <img src="/images/product_chocolate.png" alt="Chocolate" class="w-full h-56 object-cover" />
+          <img src="/images/product_chocolate.jpg" alt="Chocolate" loading="lazy" class="w-full h-56 object-cover" />
           <div class="p-6">
             <h3 class="dv-serif font-semibold text-xl mb-2" style="color: #1A0E07;">Chocolate</h3>
             <p class="text-sm leading-relaxed mb-3" style="color: #5C3A20;">Rich chocolate farmer's cheese filling wrapped in a velvety chocolate coating. Deep flavor, high protein, and nothing artificial.</p>
@@ -94,7 +97,7 @@ import LayoutNew from '../layouts/LayoutNew.astro';
           </div>
         </div>
         <div class="bg-white rounded-2xl overflow-hidden shadow-sm" style="border: 1px solid #D4BFA0;">
-          <img src="/images/product_dulce-de-leche.png" alt="Dulce de Leche" class="w-full h-56 object-cover" />
+          <img src="/images/product_dulce-de-leche.jpg" alt="Dulce de Leche" loading="lazy" class="w-full h-56 object-cover" />
           <div class="p-6">
             <h3 class="dv-serif font-semibold text-xl mb-2" style="color: #1A0E07;">Dulce de Leche</h3>
             <p class="text-sm leading-relaxed mb-3" style="color: #5C3A20;">Creamy farmer's cheese swirled with rich dulce de leche, wrapped in silky chocolate. Sweet, smooth, and made with honest ingredients.</p>
@@ -109,7 +112,7 @@ import LayoutNew from '../layouts/LayoutNew.astro';
   <section class="py-16 px-4" style="background-color: #EAD7BF;">
     <div class="max-w-5xl mx-auto flex flex-col lg:flex-row items-center gap-12">
       <div class="lg:w-1/2 rounded-2xl overflow-hidden shadow-md">
-        <img src="/images/gallery6.jpg" alt="About Dairy Velvet" class="w-full h-80 object-cover" />
+        <img src="/images/gallery6.jpg" alt="About Dairy Velvet" loading="lazy" class="w-full h-80 object-cover" />
       </div>
       <div class="lg:w-1/2">
         <p class="text-xs font-semibold uppercase tracking-widest mb-3" style="color: #BE8D5A;">Our Story</p>
@@ -127,12 +130,12 @@ import LayoutNew from '../layouts/LayoutNew.astro';
   <!-- Gallery -->
   <section class="py-12 px-4" style="background-color: #F8F3EC;">
     <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-3">
-      <img src="/images/gallery1.jpg" alt="" class="w-full h-52 object-cover rounded-xl" />
-      <img src="/images/gallery2.jpg" alt="" class="w-full h-52 object-cover rounded-xl" />
-      <img src="/images/gallery3.jpg" alt="" class="w-full h-52 object-cover rounded-xl" />
-      <img src="/images/gallery4.jpg" alt="" class="w-full h-52 object-cover rounded-xl" />
-      <img src="/images/gallery5.jpg" alt="" class="w-full h-52 object-cover rounded-xl" />
-      <img src="/images/gallery7.jpg" alt="" class="w-full h-52 object-cover rounded-xl" />
+      <img src="/images/gallery1.jpg" alt="Dairy Velvet Chocolate and Vanilla bars in their wrappers" loading="lazy" class="w-full h-52 object-cover rounded-xl" />
+      <img src="/images/gallery2.jpg" alt="Plate of Dairy Velvet bars with coffee on a kitchen table" loading="lazy" class="w-full h-52 object-cover rounded-xl" />
+      <img src="/images/gallery3.jpg" alt="Dairy Velvet bar on a plate next to a cappuccino" loading="lazy" class="w-full h-52 object-cover rounded-xl" />
+      <img src="/images/gallery4.jpg" alt="Sliced Dairy Velvet bars showing the creamy farmer's cheese filling" loading="lazy" class="w-full h-52 object-cover rounded-xl" />
+      <img src="/images/gallery5.jpg" alt="Mother and daughters enjoying Dairy Velvet bars with tea" loading="lazy" class="w-full h-52 object-cover rounded-xl" />
+      <img src="/images/gallery7.jpg" alt="Three Dairy Velvet bars cut open on a wooden board" loading="lazy" class="w-full h-52 object-cover rounded-xl" />
     </div>
   </section>
 
