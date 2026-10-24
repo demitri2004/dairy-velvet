@@ -1,10 +1,17 @@
 ---
 import LayoutNew from '../layouts/LayoutNew.astro';
 
+// Past dates, empty months and finished markets are hidden in the browser (see script below),
+// so the page stays current between deploys.
+const YEAR = 2026;
+
 const markets = [
   {
     name: 'Lansdale Farmers Market',
     day: 'Every Saturday',
+    hours: '9:00 AM – 12:30 PM',
+    address: '400 Penn St, Lansdale, PA',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Lansdale+Farmers+Market+400+Penn+St+Lansdale+PA',
     schedule: [
       { month: 'June', dates: [6, 13, 20, 27] },
       { month: 'July', dates: [4, 11, 18] },
@@ -37,6 +44,10 @@ const markets = [
     ],
   },
 ];
+
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const isoDate = (month: string, day: number) =>
+  `${YEAR}-${String(MONTHS.indexOf(month) + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
 ---
 
 <LayoutNew
@@ -47,6 +58,12 @@ const markets = [
   <section class="py-16 px-4 text-center" style="background-color: #EAD7BF;">
     <p class="text-xs font-semibold uppercase tracking-widest mb-3" style="color: #BE8D5A;">Find Us Near You</p>
     <h1 class="dv-serif font-bold text-5xl" style="color: #1A0E07;">Where to Buy</h1>
+    <a
+      id="next-market"
+      href="#markets"
+      hidden
+      class="inline-block mt-6 text-sm font-medium px-5 py-2 rounded-full hover:opacity-80 transition-opacity"
+      style="background-color: #3d2314; color: #fdfaf6;"></a>
   </section>
 
   <!-- Intro -->
@@ -55,8 +72,8 @@ const markets = [
       <p class="text-base leading-relaxed" style="color: #5C3A20;">
         Pre-order chocolate-coated farmer's cheese bars for pickup at Lansdale-area farmers markets,
         year-round at Organnons Natural Market in Newtown, or delivered straight to your door. Dairy
-        Velvet makes creamy, high-protein Eastern European cheesecake bars in small batches with
-        local PA dairy, in vanilla, chocolate, and dulce de leche flavors.
+        Velvet makes creamy, syrok-style Eastern European cheesecake bars in small batches with
+        local PA dairy, in dulce de leche, vanilla, and chocolate flavors.
       </p>
     </div>
   </section>
@@ -100,30 +117,80 @@ const markets = [
   </section>
 
   <!-- Farmers Markets -->
-  <section class="py-16 px-4" style="background-color: #F8F3EC;">
+  <section id="markets" class="py-16 px-4 scroll-mt-32" style="background-color: #F8F3EC;">
     <div class="max-w-5xl mx-auto">
       <div class="text-center mb-10">
         <p class="text-xs font-semibold uppercase tracking-widest mb-2" style="color: #BE8D5A;">Seasonal · 2026</p>
         <h2 class="dv-serif font-bold text-3xl" style="color: #1A0E07;">Farmers Markets</h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {markets.map((market) => (
-          <div class="bg-white rounded-2xl p-6 shadow-sm" style="border: 1px solid #D4BFA0;">
-            <p class="text-xs font-semibold uppercase tracking-widest mb-2" style="color: #BE8D5A;">{market.day}</p>
-            <h3 class="dv-serif font-semibold text-xl mb-5" style="color: #1A0E07;">{market.name}</h3>
+      <div id="off-season" hidden class="max-w-2xl mx-auto mb-10 bg-white rounded-2xl p-6 text-center shadow-sm" style="border: 1px solid #D4BFA0;">
+        <h3 class="dv-serif font-semibold text-xl mb-2" style="color: #1A0E07;">Off-season</h3>
+        <p class="text-sm leading-relaxed" style="color: #5C3A20;">
+          Our outdoor market season has wrapped up. Order online for local delivery, or find us year-round at
+          Organnons Natural Market in Newtown. Winter market dates are coming soon.
+        </p>
+      </div>
 
-            <div class="space-y-3">
-                {market.schedule.map((entry) => (
-                  <div>
-                    <p class="text-xs font-semibold uppercase tracking-wide mb-0.5" style="color: #1A0E07;">{entry.month}</p>
-                    <p class="text-sm" style="color: #5C3A20;">{entry.dates.join(', ')}</p>
-                  </div>
-                ))}
-              </div>
+      <div class="flex flex-wrap justify-center gap-6">
+        {markets.map((market) => (
+          <div class="market w-full md:w-[calc((100%-3rem)/3)] bg-white rounded-2xl p-6 shadow-sm" style="border: 1px solid #D4BFA0;" data-name={market.name} data-hours={market.hours}>
+            <p class="text-xs font-semibold uppercase tracking-widest mb-2" style="color: #BE8D5A;">{market.day}</p>
+            <h3 class="dv-serif font-semibold text-xl mb-2" style="color: #1A0E07;">{market.name}</h3>
+            {market.hours && <p class="text-sm" style="color: #5C3A20;">{market.hours}</p>}
+            {market.address && (
+              <a href={market.mapUrl} target="_blank" class="text-sm font-medium hover:underline" style="color: #BE8D5A;">{market.address} ↗</a>
+            )}
+
+            <div class="space-y-3 mt-5">
+              {market.schedule.map((entry) => (
+                <div class="market-month">
+                  <p class="text-xs font-semibold uppercase tracking-wide mb-0.5" style="color: #1A0E07;">{entry.month}</p>
+                  <p class="text-sm" style="color: #5C3A20;">
+                    {entry.dates.map((day, i) => (
+                      <span class="market-date" data-date={isoDate(entry.month, day)}>{i > 0 && ', '}{day}</span>
+                    ))}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         ))}
       </div>
+      <script is:inline>
+        (function () {
+          var d = new Date();
+          var today = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+          var next = null;
+          document.querySelectorAll('.market').forEach(function (market) {
+            market.querySelectorAll('.market-month').forEach(function (month) {
+              var upcoming = Array.prototype.filter.call(month.querySelectorAll('.market-date'), function (el) {
+                if (el.dataset.date < today) { el.remove(); return false; }
+                if (!next || el.dataset.date < next.date) {
+                  next = { date: el.dataset.date, name: market.dataset.name, hours: market.dataset.hours };
+                }
+                return true;
+              });
+              if (!upcoming.length) month.remove();
+              else upcoming[0].textContent = upcoming[0].textContent.replace(/^, /, '');
+            });
+            if (!market.querySelector('.market-date')) market.remove();
+          });
+
+          if (next) {
+            var parts = next.date.split('-');
+            var when = new Date(+parts[0], parts[1] - 1, +parts[2]);
+            var label = next.date === today
+              ? 'Today'
+              : when.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+            var link = document.getElementById('next-market');
+            link.textContent = 'Next market: ' + label + ' · ' + next.name + (next.hours ? ' · ' + next.hours : '');
+            link.hidden = false;
+          } else {
+            document.getElementById('off-season').hidden = false;
+          }
+        })();
+      </script>
       <div class="mt-10 rounded-2xl overflow-hidden shadow-md">
         <img src="/images/market-booth.jpg" alt="Dairy Velvet at the farmers market" loading="lazy" class="w-full" />
       </div>

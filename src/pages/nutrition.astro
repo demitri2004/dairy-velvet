@@ -4,7 +4,7 @@ import LayoutNew from '../layouts/LayoutNew.astro';
 
 <LayoutNew
   title="Nutrition Facts | Dairy Velvet"
-  description="Nutrition facts for Dairy Velvet Vanilla, Chocolate, and Dulce de Leche chocolate-coated farmer's cheese snacks. High in protein, low in sugar."
+  description="Nutrition facts for Dairy Velvet Dulce de Leche, Vanilla, and Chocolate chocolate-coated farmer's cheese bars: 170 calories and up to 5g of protein per 50g bar."
 >
   <!-- Page header -->
   <section class="py-16 px-4 text-center" style="background-color: #EAD7BF;">
@@ -19,10 +19,22 @@ import LayoutNew from '../layouts/LayoutNew.astro';
         We're currently working on adding nutrition labels to our packaging. In the meantime, you can view them here.
       </p>
       <p class="text-base leading-relaxed text-center mb-12" style="color: #5C3A20;">
-        Each Dairy Velvet bar is 1 serving (50g). High in protein, low in sugar, made with simple wholesome ingredients.
+        Each Dairy Velvet bar is one 50g serving with 170 calories and up to 5g of protein, made with simple, wholesome ingredients.
       </p>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <!-- Dulce de Leche -->
+        <div id="dulce-de-leche" class="flex flex-col items-center">
+          <h2 class="dv-serif font-semibold text-2xl mb-6" style="color: #1A0E07;">Dulce de Leche</h2>
+          <div class="w-full max-w-xs shadow-md rounded-xl border overflow-hidden" style="border-color: #D4BFA0;">
+            <img
+              src="/images/nutrition-dulce-de-leche.png"
+              alt="Dairy Velvet Dulce de Leche Nutrition Facts"
+              class="w-full block"
+            />
+          </div>
+        </div>
+
         <!-- Vanilla -->
         <div id="vanilla" class="flex flex-col items-center">
           <h2 class="dv-serif font-semibold text-2xl mb-6" style="color: #1A0E07;">Vanilla</h2>
@@ -42,18 +54,6 @@ import LayoutNew from '../layouts/LayoutNew.astro';
             <img
               src="/images/nutrition-chocolate.png"
               alt="Dairy Velvet Chocolate Nutrition Facts"
-              class="w-full block"
-            />
-          </div>
-        </div>
-
-        <!-- Dulce de Leche -->
-        <div id="dulce-de-leche" class="flex flex-col items-center">
-          <h2 class="dv-serif font-semibold text-2xl mb-6" style="color: #1A0E07;">Dulce de Leche</h2>
-          <div class="w-full max-w-xs shadow-md rounded-xl border overflow-hidden" style="border-color: #D4BFA0;">
-            <img
-              src="/images/nutrition-dulce-de-leche.png"
-              alt="Dairy Velvet Dulce de Leche Nutrition Facts"
               class="w-full block"
             />
           </div>
