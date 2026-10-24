@@ -1,11 +1,34 @@
 ---
 import LayoutNew from '../layouts/LayoutNew.astro';
+
+// Business details for search engines. Only facts already shown on the site:
+// no street address (home-based), no hours (market days vary), no prices.
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Dairy Velvet',
+  url: 'https://dairyvelvet.com/',
+  logo: 'https://dairyvelvet.com/images/logo.png',
+  image: 'https://dairyvelvet.com/images/og-image.jpg',
+  description:
+    "Small-batch chocolate-coated farmer's cheese bars inspired by Eastern European syrok, made with Pennsylvania dairy.",
+  telephone: '+1-267-219-8251',
+  email: 'team@dairyvelvet.com',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Lansdale',
+    addressRegion: 'PA',
+    addressCountry: 'US',
+  },
+  sameAs: ['https://www.instagram.com/dairy_velvet/', 'https://www.facebook.com/profile.php?id=61580376261342'],
+};
 ---
 
 <LayoutNew
   title="Chocolate-Covered Farmer's Cheese Snacks | Dairy Velvet"
   description="Small-batch chocolate-coated farmer's cheese bars inspired by Eastern European syrok, made with Pennsylvania dairy. Find us at local markets or order for pickup and delivery."
 >
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(organization)} />
   <!-- Hero -->
   <section class="flex flex-col lg:flex-row" style="min-height: 520px;">
     <div class="lg:w-3/5 h-72 lg:h-auto overflow-hidden">
@@ -86,7 +109,7 @@ import LayoutNew from '../layouts/LayoutNew.astro';
             <p class="text-xs font-semibold uppercase tracking-widest mb-1" style="color: #BE8D5A;">Signature Flavor</p>
             <h3 class="dv-serif font-semibold text-xl mb-2" style="color: #1A0E07;">Dulce de Leche</h3>
             <p class="text-sm leading-relaxed mb-3" style="color: #5C3A20;">Creamy farmer's cheese swirled with rich dulce de leche, wrapped in silky chocolate. Sweet, smooth, and made with honest ingredients.</p>
-            <a href="/nutrition#dulce-de-leche" class="text-xs font-semibold uppercase tracking-widest hover:underline" style="color: #BE8D5A;">Nutrition Facts →</a>
+            <a href="/nutrition/#dulce-de-leche" class="text-xs font-semibold uppercase tracking-widest hover:underline" style="color: #BE8D5A;">Nutrition Facts →</a>
           </div>
         </div>
         <div class="bg-white rounded-2xl overflow-hidden shadow-sm" style="border: 1px solid #D4BFA0;">
@@ -94,7 +117,7 @@ import LayoutNew from '../layouts/LayoutNew.astro';
           <div class="p-6">
             <h3 class="dv-serif font-semibold text-xl mb-2" style="color: #1A0E07;">Vanilla</h3>
             <p class="text-sm leading-relaxed mb-3" style="color: #5C3A20;">Classic creamy vanilla farmer's cheese wrapped in a delicate layer of silky chocolate. Light, satisfying, and made with honest ingredients.</p>
-            <a href="/nutrition#vanilla" class="text-xs font-semibold uppercase tracking-widest hover:underline" style="color: #BE8D5A;">Nutrition Facts →</a>
+            <a href="/nutrition/#vanilla" class="text-xs font-semibold uppercase tracking-widest hover:underline" style="color: #BE8D5A;">Nutrition Facts →</a>
           </div>
         </div>
         <div class="bg-white rounded-2xl overflow-hidden shadow-sm" style="border: 1px solid #D4BFA0;">
@@ -102,7 +125,7 @@ import LayoutNew from '../layouts/LayoutNew.astro';
           <div class="p-6">
             <h3 class="dv-serif font-semibold text-xl mb-2" style="color: #1A0E07;">Chocolate</h3>
             <p class="text-sm leading-relaxed mb-3" style="color: #5C3A20;">Rich chocolate farmer's cheese filling wrapped in a velvety chocolate coating. Deep flavor, real farmer's cheese, and nothing artificial.</p>
-            <a href="/nutrition#chocolate" class="text-xs font-semibold uppercase tracking-widest hover:underline" style="color: #BE8D5A;">Nutrition Facts →</a>
+            <a href="/nutrition/#chocolate" class="text-xs font-semibold uppercase tracking-widest hover:underline" style="color: #BE8D5A;">Nutrition Facts →</a>
           </div>
         </div>
       </div>
