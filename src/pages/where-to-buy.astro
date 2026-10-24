@@ -2,8 +2,8 @@
 import LayoutNew from '../layouts/LayoutNew.astro';
 
 // Past dates, empty months and finished markets are hidden in the browser (see script below),
-// so the page stays current between deploys.
-const YEAR = 2026;
+// so the page stays current between deploys. Months default to 2026; set `year` for later ones.
+const DEFAULT_YEAR = 2026;
 
 const markets = [
   {
@@ -18,7 +18,7 @@ const markets = [
       { month: 'August', dates: [1, 8, 15, 22, 29] },
       { month: 'September', dates: [5, 12, 19, 26] },
       { month: 'October', dates: [3, 10, 17, 24, 31] },
-      { month: 'November', dates: [7, 14, 21] },
+      { month: 'November', dates: [7, 14] },
       { month: 'December', dates: [19] },
     ],
   },
@@ -35,19 +35,36 @@ const markets = [
   {
     name: 'Horsham Farmers Market',
     day: 'Select Sundays',
+    hours: '10:00 AM - 1:00 PM',
+    address: 'Horsham Township Library, 435 Babylon Road, Horsham, PA',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Horsham+Township+Library+435+Babylon+Road+Horsham+PA+19044',
     schedule: [
       { month: 'June', dates: [14, 28] },
       { month: 'July', dates: [12, 19] },
       { month: 'August', dates: [30] },
       { month: 'September', dates: [13] },
       { month: 'October', dates: [11, 25] },
+      { month: 'November', dates: [1] },
+      { month: 'December', dates: [6] },
+      { month: 'January', year: 2027, dates: [17] },
+      { month: 'February', year: 2027, dates: [21] },
+      { month: 'March', year: 2027, dates: [21] },
+      { month: 'April', year: 2027, dates: [18] },
     ],
+  },
+  {
+    name: "Weavers Way Holiday Maker's Market",
+    day: 'One Day Only',
+    hours: '11:00 AM - 3:00 PM',
+    address: '217 E. Butler Ave., Ambler, PA',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Weavers+Way+Ambler+217+E+Butler+Ave+Ambler+PA+19002',
+    schedule: [{ month: 'November', dates: [15] }],
   },
 ];
 
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-const isoDate = (month: string, day: number) =>
-  `${YEAR}-${String(MONTHS.indexOf(month) + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+const isoDate = (month: string, day: number, year = DEFAULT_YEAR) =>
+  `${year}-${String(MONTHS.indexOf(month) + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
 ---
 
 <LayoutNew
@@ -120,7 +137,7 @@ const isoDate = (month: string, day: number) =>
   <section id="markets" class="py-16 px-4 scroll-mt-32" style="background-color: #F8F3EC;">
     <div class="max-w-5xl mx-auto">
       <div class="text-center mb-10">
-        <p class="text-xs font-semibold uppercase tracking-widest mb-2" style="color: #BE8D5A;">Seasonal · 2026</p>
+        <p class="text-xs font-semibold uppercase tracking-widest mb-2" style="color: #BE8D5A;">Upcoming Dates</p>
         <h2 class="dv-serif font-bold text-3xl" style="color: #1A0E07;">Farmers Markets</h2>
       </div>
 
@@ -145,10 +162,10 @@ const isoDate = (month: string, day: number) =>
             <div class="space-y-3 mt-5">
               {market.schedule.map((entry) => (
                 <div class="market-month">
-                  <p class="text-xs font-semibold uppercase tracking-wide mb-0.5" style="color: #1A0E07;">{entry.month}</p>
+                  <p class="text-xs font-semibold uppercase tracking-wide mb-0.5" style="color: #1A0E07;">{entry.month}{entry.year && entry.year !== DEFAULT_YEAR && ` ${entry.year}`}</p>
                   <p class="text-sm" style="color: #5C3A20;">
                     {entry.dates.map((day, i) => (
-                      <span class="market-date" data-date={isoDate(entry.month, day)}>{i > 0 && ', '}{day}</span>
+                      <span class="market-date" data-date={isoDate(entry.month, day, entry.year)}>{i > 0 && ', '}{day}</span>
                     ))}
                   </p>
                 </div>
